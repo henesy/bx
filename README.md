@@ -6,7 +6,7 @@ Written in [Go](https://golang.org).
 
 ## Dependencies
 
-- https://github.com/seh-msft/burpxml
+- https://github.com/henesy/burpxml
 
 ## Build
 
@@ -58,3 +58,33 @@ Create a JSON subset of the XML data consisting of an array of paths:
 	"path": "/async/foo"
 	}
 	;
+
+Create a JSON version of the XML data, exposing the history as a file system rooted at `$HOME/n/json` using [jsonfs](https://github.com/droyo/jsonfs) and [9pfs](https://github.com/mischief/9pfs):
+
+	; bx -i history.xml -o history.json -j -d
+	; jsonfs history.json &
+	; 9pfs -p 5640 127.0.0.1 $HOME/n/json &
+	; cd $HOME/n/json
+	; ls
+	Items
+	; ls Items/1
+	Comment
+	Extension
+	Host/
+	MimeType
+	Path
+	Port
+	Protocol
+	Request/
+	Response/
+	ResponseLength
+	Status
+	Time
+	Url
+	; grep -i office Items/*/Host/Name
+	2/Host/Name:outlook.office365.com
+	7/Host/Name:outlook.office365.com
+	; 
+
+Note that the above strategy is particularly useful for accessing requests/responses as needed and permits trivial shell scripting over the file system. 
+

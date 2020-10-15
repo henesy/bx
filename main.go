@@ -10,7 +10,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/seh-msft/burpxml"
+	"github.com/henesy/burpxml"
 )
 
 var (
