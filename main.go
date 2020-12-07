@@ -15,14 +15,14 @@ import (
 
 var (
 	useStdin    = flag.Bool("s", false, "read from stdin (rather than first argument)")
-	toJson      = flag.Bool("j", false, "emit XML as JSON only")
-	toCsv       = flag.Bool("c", false, "emit XML as CSV only")
-	toGo        = flag.Bool("g", false, "emit XML as valid Go syntax only")
+	toJson      = flag.Bool("json", false, "emit XML as JSON only")
+	toCsv       = flag.Bool("csv", false, "emit XML as CSV only")
+	toGo        = flag.Bool("go", false, "emit XML as valid Go syntax only")
 	outFileName = flag.String("o", "", "output file name (rather than stdout)")
 	inFileName  = flag.String("i", "", "input file name (rather than first argument)")
-	noReq       = flag.Bool("r", false, "omit requests in CSV (as they may corrupt output in excel)")
-	noResp      = flag.Bool("R", false, "omit responses in CSV (as they may corrupt output in excel)")
-	decode      = flag.Bool("d", false, "decode base64 bodies (may corrupt output)")
+	noReq       = flag.Bool("noreq", false, "omit requests in CSV (as they may corrupt output in excel)")
+	noResp      = flag.Bool("noresp", false, "omit responses in CSV (as they may corrupt output in excel)")
+	decode      = flag.Bool("b64", false, "decode base64 bodies (may corrupt output)")
 )
 
 // Parse burp proxy history XML output
